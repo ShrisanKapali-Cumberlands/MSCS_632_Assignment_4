@@ -429,11 +429,11 @@ dataSet3 = {
 # Examples
 if __name__ == "__main__":
     # Change data set here to test different scenarios
-    sample_employee_preferences = dataSet
+    # sample_employee_preferences = dataSet
     # sample_employee_preferences = dataSet1
 
     # sample_employee_preferences = dataSet2
-    # sample_employee_preferences = dataSet3
+    sample_employee_preferences = dataSet3
 
     # 2. Scheduling Logic (called by create_schedule function)
     # 3. Shift Conflicts (handled within create_schedule, prioritizing same-day alternatives
