@@ -79,10 +79,7 @@ def create_schedule(
                     continue
 
                 # Only if the preferred shift is not full, assign the employee
-                if (
-                    len(weekly_schedule[day][preferred_shift])
-                    < num_employees_per_shift + 1
-                ):
+                if len(weekly_schedule[day][preferred_shift]) < num_employees_per_shift:
                     weekly_schedule[day][preferred_shift].append(employee_name)
                     employees_assigned_today[employee_name] = True
                     employee_work_days[employee_name] += 1
@@ -320,75 +317,123 @@ def display_employee_summary_ui(employee_work_days):
     root.mainloop()
 
 
-# --- Example Usage ---
+# Empty Data Set
+dataSet = {}
+
+# No Preference Data Set
+dataSet1 = {
+    "Ricky": {},
+    "John": {},
+    "Nuguid": {},
+    "Elyza": {},
+    "Allison": {},
+    "Henry": {},
+    "Cavil": {},
+    "Merit": {},
+    "Braxton": {},
+    "Neil": {},
+    "Marko": {},
+}
+
+# Data Set with Day Preferences
+dataSet2 = {
+    "Ricky": {
+        "Monday": ["Afternoon", "Evening"],
+        "Tuesday": ["Evening", "Morning"],
+        "Thursday": ["Morning"],
+        "Friday": ["Morning"],
+    },
+    "John": {
+        "Tuesday": ["Morning"],
+        "Wednesday": ["Morning"],
+        "Thursday": ["Morning"],
+        "Friday": ["Morning"],
+        "Saturday": ["Morning"],
+        "Sunday": ["Morning"],
+    },
+    "Nuguid": {
+        "Monday": ["Evening"],
+        "Tuesday": ["Evening"],
+        "Wednesday": ["Evening"],
+        "Thursday": ["Evening"],
+        "Friday": ["Evening"],
+        "Saturday": ["Evening"],
+    },
+    "Elyza": {
+        "Monday": ["Evening", "Morning"],
+        "Tuesday": ["Morning"],
+        "Wednesday": ["Evening"],
+        "Thursday": ["Afternoon"],
+        "Friday": ["Morning"],
+        "Saturday": ["Afternoon"],
+        "Sunday": ["Morning"],
+    },
+    "Allison": {
+        "Monday": ["Morning", "Evening"],
+        "Tuesday": ["Afternoon"],
+        "Wednesday": ["Morning"],
+        "Thursday": ["Afternoon"],
+        "Friday": ["Evening"],
+        "Saturday": ["Evening"],
+        "Sunday": ["Afternoon"],
+    },
+    "Henry": {
+        "Monday": ["Afternoon"],
+        "Tuesday": ["Evening"],
+        "Wednesday": ["Afternoon"],
+        "Thursday": ["Evening"],
+        "Friday": ["Morning"],
+        "Saturday": ["Morning"],
+        "Sunday": ["Evening"],
+    },
+    "Cavil": {
+        "Monday": ["Evening"],
+        "Tuesday": ["Morning"],
+        "Wednesday": ["Morning"],
+        "Thursday": ["Morning", "Evening"],
+        "Friday": ["Afternoon", "Evening"],
+        "Saturday": ["Afternoon", "Evening"],
+        "Sunday": ["Morning", "Evening"],
+    },
+    # No preferences at all
+    "Merit": {},
+    "Braxton": {},
+    "Neil": {},
+    "Marko": {},
+}
+
+# Data Set with less Employees
+dataSet3 = {
+    "Cavil": {
+        "Monday": ["Evening"],
+        "Tuesday": ["Morning"],
+        "Wednesday": ["Morning"],
+        "Thursday": ["Morning", "Evening"],
+        "Friday": ["Afternoon", "Evening"],
+        "Saturday": ["Afternoon", "Evening"],
+        "Sunday": ["Morning", "Evening"],
+    },
+    "Henry": {
+        "Monday": ["Afternoon"],
+        "Tuesday": ["Evening"],
+        "Wednesday": ["Afternoon"],
+        "Thursday": ["Evening"],
+        "Friday": ["Morning"],
+        "Saturday": ["Morning"],
+        "Sunday": ["Evening"],
+    },
+    "Merit": {},
+    "Braxton": {},
+}
+
+# Examples
 if __name__ == "__main__":
-    # Each employee has preferences for each day. If a day is not listed, they have no preference.
-    # Preferences are lists, indicating priority.
-    sample_employee_preferences = {
-        "Ricky": {
-            "Monday": ["Afternoon", "Evening"],
-            "Tuesday": ["Evening", "Morning"],
-            "Thursday": ["Morning"],
-            "Friday": ["Morning"],
-        },
-        "John": {
-            "Tuesday": ["Morning"],
-            "Wednesday": ["Morning"],
-            "Thursday": ["Morning"],
-            "Friday": ["Morning"],
-            "Saturday": ["Morning"],
-            "Sunday": ["Morning"],
-        },
-        "Nuguid": {
-            "Monday": ["Evening"],
-            "Tuesday": ["Evening"],
-            "Wednesday": ["Evening"],
-            "Thursday": ["Evening"],
-            "Friday": ["Evening"],
-            "Saturday": ["Evening"],
-        },
-        "Elyza": {
-            "Monday": ["Evening", "Morning"],
-            "Tuesday": ["Morning"],
-            "Wednesday": ["Evening"],
-            "Thursday": ["Afternoon"],
-            "Friday": ["Morning"],
-            "Saturday": ["Afternoon"],
-            "Sunday": ["Morning"],
-        },
-        "Allison": {
-            "Monday": ["Morning", "Evening"],
-            "Tuesday": ["Afternoon"],
-            "Wednesday": ["Morning"],
-            "Thursday": ["Afternoon"],
-            "Friday": ["Evening"],
-            "Saturday": ["Evening"],
-            "Sunday": ["Afternoon"],
-        },
-        "Henry": {
-            "Monday": ["Afternoon"],
-            "Tuesday": ["Evening"],
-            "Wednesday": ["Afternoon"],
-            "Thursday": ["Evening"],
-            "Friday": ["Morning"],
-            "Saturday": ["Morning"],
-            "Sunday": ["Evening"],
-        },
-        "Cavil": {
-            "Monday": ["Evening"],
-            "Tuesday": ["Morning"],
-            "Wednesday": ["Morning"],
-            "Thursday": ["Morning", "Evening"],
-            "Friday": ["Afternoon", "Evening"],
-            "Saturday": ["Afternoon", "Evening"],
-            "Sunday": ["Morning", "Evening"],
-        },
-        # No preferences at all
-        "Merit": {},
-        "Braxton": {},
-        "Neil": {},
-        "Marko": {},
-    }
+    # Change data set here to test different scenarios
+    sample_employee_preferences = dataSet
+    # sample_employee_preferences = dataSet1
+
+    # sample_employee_preferences = dataSet2
+    # sample_employee_preferences = dataSet3
 
     # 2. Scheduling Logic (called by create_schedule function)
     # 3. Shift Conflicts (handled within create_schedule, prioritizing same-day alternatives
